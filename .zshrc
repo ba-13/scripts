@@ -108,3 +108,13 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# History Ignore
+export HISTIGNORE="pwd:ls"
+
+# Personal alias
+alias c="clear"
+alias rp="chmod +x"
+alias clip="xclip -sel clip"
+alias cat='bat -pp'
+
