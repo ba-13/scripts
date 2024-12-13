@@ -108,3 +108,27 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias cat='batcat -pp'
+alias mount_shared="sudo mount ba13-nitro:/attached/SHARED /mnt/SHARED"
+alias unmount_shared="sudo umount /mnt/SHARED"
+alias charge_till_full='sudo sed -i "s/START_CHARGE_THRESH_BAT0.*/START_CHARGE_THRESH_BAT0=0/" /etc/tlp.conf;
+sudo sed -i "s/STOP_CHARGE_THRESH_BAT0.*/STOP_CHARGE_THRESH_BAT0=100/" /etc/tlp.conf;
+sudo tlp start;'
+alias charge_safe='sudo sed -i "s/START_CHARGE_THRESH_BAT0.*/START_CHARGE_THRESH_BAT0=60/" /etc/tlp.conf;
+sudo sed -i "s/STOP_CHARGE_THRESH_BAT0.*/STOP_CHARGE_THRESH_BAT0=80/" /etc/tlp.conf;
+sudo tlp start;'
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/ba13/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/ba13/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/ba13/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/ba13/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
