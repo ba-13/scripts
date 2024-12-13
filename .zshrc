@@ -108,6 +108,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Personal alias
+alias c="clear"
+alias rp="chmod +x"
+alias clip="xclip -sel clip"
 alias cat='batcat -pp'
 alias mount_shared="sudo mount ba13-nitro:/attached/SHARED /mnt/SHARED"
 alias unmount_shared="sudo umount /mnt/SHARED"
@@ -132,3 +137,5 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+# History Ignore
+export HISTORY_IGNORE="pwd:ls"
