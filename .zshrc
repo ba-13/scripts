@@ -1,113 +1,92 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-ZSH_THEME="robbyrussell"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-	git
-	zsh-autosuggestions
-	fast-syntax-highlighting
-	zsh-autocomplete
-)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
-
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
+##
+# ⚠️ WARNING: Don't manually `source` your .zshrc file! This can have unexpected
+# side effects.
+# Instead, to apply changes, open a new terminal or restart your shell.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+
+##
+# Source Znap at the start of your .zshrc file.
+#
+[[ -r ~/.zsh-plugins/znap/znap.zsh ]] ||
+    git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git ~/.zsh-plugins/znap
+source ~/.zsh-plugins/znap/znap.zsh
+
+
+##
+# Does your shell feels slow to start? `znap prompt` reduces the time between
+# opening your terminal and seeing your prompt to just 15 - 40 ms!
+#
+# znap prompt agnoster/agnoster-zsh-theme
+
+# `znap prompt` also supports Oh-My-Zsh themes. Just make sure you load the
+# required libs first:
+znap source ohmyzsh/ohmyzsh
+# znap prompt sindresorhus/pure
+
+# ZSH_THEME="robbyrussell"
+# source "$HOME/.zsh-plugins/ohmyzsh/ohmyzsh/themes/$ZSH_THEME.zsh-theme"
+znap prompt ohmyzsh/ohmyzsh themes/robbyrussell
+
+# Using your own custom prompt? After initializing the prompt, just call
+# `znap prompt` without arguments to get it to show:
+# PS1=$'%(?,%F{g},%F{r})%#%f '
+# znap prompt
+
+# The same goes for any other kind of custom prompt:
+# znap eval starship 'starship init zsh --print-full-init'
+# znap prompt
+
+# NOTE that `znap prompt` does not work with Powerlevel10k.
+# With that theme, you should use its "instant prompt" feature instead.
+
+
+##
+# Load your plugins with `znap source`.
+#
+# You can also choose to load one or more files specifically:
+znap source sorin-ionescu/prezto modules/{environment,history}
+
+# No special syntax is needed to configure plugins. Just use normal Zsh
+# statements:
+
+znap source marlonrichert/zsh-hist
+bindkey '^[q' push-line-or-edit
+bindkey -r '^Q' '^[Q'
+
+ZSH_AUTOSUGGEST_STRATEGY=( history )
+znap source zsh-users/zsh-autosuggestions
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=( main brackets )
+znap source zsh-users/zsh-syntax-highlighting
+
+znap source marlonrichert/zsh-autocomplete
+znap source marlonrichert/zsh-edit
+
+##
+# Cache the output of slow commands with `znap eval`.
+#
+
+# If the first arg is a repo, then the command will run inside it. Plus,
+# whenever you update a repo with `znap pull`, its eval cache gets regenerated
+# automatically.
+# znap eval trapd00r/LS_COLORS "$( whence -a dircolors gdircolors ) -b LS_COLORS"
+
+# The cache gets regenerated, too, when the eval command has changed. For
+# example, here we include a variable. So, the cache gets invalidated whenever
+# this variable has changed.
+# znap source marlonrichert/zcolors
+# znap eval   marlonrichert/zcolors "zcolors ${(q)LS_COLORS}"
+
+# Combine `znap eval` with `curl` or `wget` to download, cache and source
+# individual files:
+# znap eval omz-git 'curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.plugin.zsh'
+
+
+##
+# Defer initilization code with lazily loaded functions created by
+# `znap function`.
+#
 
 # Personal alias
 alias c="clear"
@@ -115,7 +94,9 @@ alias rp="chmod +x"
 alias clip="xclip -sel clip"
 alias cat='batcat -pp'
 alias mount_shared="sudo mount ba13-nitro:/attached/SHARED /mnt/SHARED"
+alias mount_shared_repo="sudo mount ba13-nitro:/attached/SHARED_REPO /mnt/SHARED_REPO"
 alias unmount_shared="sudo umount /mnt/SHARED"
+alias unmount_shared_repo="sudo umount /mnt/SHARED_REPO"
 alias charge_till_full='sudo sed -i "s/START_CHARGE_THRESH_BAT0.*/START_CHARGE_THRESH_BAT0=0/" /etc/tlp.conf;
 sudo sed -i "s/STOP_CHARGE_THRESH_BAT0.*/STOP_CHARGE_THRESH_BAT0=100/" /etc/tlp.conf;
 sudo tlp start;'
@@ -139,3 +120,9 @@ unset __conda_setup
 # <<< conda initialize <<<
 # History Ignore
 export HISTORY_IGNORE="pwd:ls"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+[ -f "/home/ba13/.ghcup/env" ] && . "/home/ba13/.ghcup/env" # ghcup-env
