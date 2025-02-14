@@ -92,7 +92,7 @@ znap source marlonrichert/zsh-edit
 alias c="clear"
 alias rp="chmod +x"
 alias clip="xclip -sel clip"
-alias cat='batcat -pp'
+alias cat='bat -pp'
 alias mount_shared="sudo mount ba13-nitro:/attached/SHARED /mnt/SHARED"
 alias mount_shared_repo="sudo mount ba13-nitro:/attached/SHARED_REPO /mnt/SHARED_REPO"
 alias unmount_shared="sudo umount /mnt/SHARED"
