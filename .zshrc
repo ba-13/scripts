@@ -21,7 +21,8 @@ znap source ohmyzsh/ohmyzsh
 
 # ZSH_THEME="robbyrussell"
 # source "$HOME/.zsh-plugins/ohmyzsh/ohmyzsh/themes/$ZSH_THEME.zsh-theme"
-znap prompt ohmyzsh/ohmyzsh themes/robbyrussell
+# znap prompt ohmyzsh/ohmyzsh themes/robbyrussell
+znap prompt ohmyzsh/ohmyzsh themes/gnzh
 
 # Using your own custom prompt? After initializing the prompt, just call
 # `znap prompt` without arguments to get it to show:
@@ -87,7 +88,6 @@ znap source marlonrichert/zsh-edit
 alias c="clear"
 alias rp="chmod +x"
 alias clip="xclip -sel clip"
-alias cat='batcat -pp'
 alias mount_shared="sudo mount ba13-nitro:/attached/SHARED /mnt/SHARED"
 alias mount_shared_repo="sudo mount ba13-nitro:/attached/SHARED_REPO /mnt/SHARED_REPO"
 alias unmount_shared="sudo umount /mnt/SHARED"
@@ -99,17 +99,18 @@ alias charge_safe='sudo sed -i "s/START_CHARGE_THRESH_BAT0.*/START_CHARGE_THRESH
 sudo sed -i "s/STOP_CHARGE_THRESH_BAT0.*/STOP_CHARGE_THRESH_BAT0=80/" /etc/tlp.conf;
 sudo tlp start;'
 alias vim=nvim
+export PATH="$HOME/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/ba13/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('${HOME}/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/ba13/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/ba13/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/ba13/miniconda3/bin:$PATH"
+        export PATH="$HOME/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -121,4 +122,9 @@ export HISTORY_IGNORE="pwd:ls"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-[ -f "/home/ba13/.ghcup/env" ] && . "/home/ba13/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
+
+# Install Ruby Gems to local
+export GEM_HOME=$HOME/gems
+export PATH=$HOME/gems/bin:$PATH
+
