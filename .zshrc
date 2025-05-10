@@ -122,9 +122,9 @@ export HISTORY_IGNORE="pwd:ls"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
-
 # Install Ruby Gems to local
 export GEM_HOME=$HOME/gems
 export PATH=$HOME/gems/bin:$PATH
 
+
+[ -f "/home/ba13/.ghcup/env" ] && . "/home/ba13/.ghcup/env" # ghcup-env
