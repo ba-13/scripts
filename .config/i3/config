@@ -207,7 +207,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 
 hide_edge_borders both
 
-exec_always feh --bg-fill /home/ba13/Wallpapers/levels.jpg
+exec_always feh --bg-fill /home/ba13/Pictures/Wallpapers/levels.jpg
 
 # Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%, exec pkill -SIGRTMIN+13 i3blocks
