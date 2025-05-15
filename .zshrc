@@ -87,6 +87,7 @@ znap source marlonrichert/zsh-edit
 # Personal alias
 alias c="clear"
 alias rp="chmod +x"
+alias vim="nvim"
 alias clip="xclip -sel clip"
 alias mount_shared="sudo mount ba13-nitro:/attached/SHARED /mnt/SHARED"
 alias mount_shared_repo="sudo mount ba13-nitro:/attached/SHARED_REPO /mnt/SHARED_REPO"
@@ -98,7 +99,6 @@ sudo tlp start;'
 alias charge_safe='sudo sed -i "s/START_CHARGE_THRESH_BAT0.*/START_CHARGE_THRESH_BAT0=60/" /etc/tlp.conf;
 sudo sed -i "s/STOP_CHARGE_THRESH_BAT0.*/STOP_CHARGE_THRESH_BAT0=80/" /etc/tlp.conf;
 sudo tlp start;'
-alias vim=nvim
 export PATH="$HOME/bin:$PATH"
 
 # >>> conda initialize >>>
