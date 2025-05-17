@@ -85,6 +85,7 @@ znap source marlonrichert/zsh-edit
 #
 
 # Personal alias
+alias firefox="firefox -ProfileManager"
 alias c="clear"
 alias rp="chmod +x"
 alias vim="nvim"
@@ -100,6 +101,7 @@ alias charge_safe='sudo sed -i "s/START_CHARGE_THRESH_BAT0.*/START_CHARGE_THRESH
 sudo sed -i "s/STOP_CHARGE_THRESH_BAT0.*/STOP_CHARGE_THRESH_BAT0=80/" /etc/tlp.conf;
 sudo tlp start;'
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
