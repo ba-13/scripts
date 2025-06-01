@@ -1,0 +1,8 @@
+- name: Raspberry Pi Server Setup
+  hosts: rpi
+  become: yes
+
+  roles:
+    #- common
+    #- docker
+    - pihole

@@ -1,0 +1,37 @@
+services:
+  pihole:
+    container_name: pihole
+    #networks:
+    #  pihole_network:
+    #    ipv4_address: '192.168.0.50'
+    image: pihole/pihole:latest
+    environment:
+      TZ: 'Europe/Zurich'
+      FTLCONF_webserver_api_password: 'pi'
+      # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
+      FTLCONF_dns_listeningMode: 'all'
+      FTLCONF_dns_upstreams: 1.1.1.1;8.8.8.8;8.8.4.4
+    volumes:
+      - './etc-pihole/:/etc/pihole/'
+      # - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "80:80/tcp"
+      - "443:443/tcp"
+    cap_add:
+      - NET_ADMIN
+      - SYS_TIME
+      - SYS_NICE
+    restart: unless-stopped
+
+networks:
+  pihole_network:
+    driver: macvlan
+    driver_opts:
+      parent: wlan0
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
+          gateway: 192.168.0.1
