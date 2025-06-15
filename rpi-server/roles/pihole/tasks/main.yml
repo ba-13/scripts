@@ -1,0 +1,41 @@
+- name: Create Pi-hole directory
+  file:
+    path: /opt/pihole
+    state: directory
+    mode: '0755'
+
+- name: Copy docker-compose.yml
+  copy:
+    src: docker-compose.yml
+    dest: /opt/pihole/docker-compose.yml
+    mode: '0644'
+
+- name: Stop systemd-resolved
+  systemd:
+    name: systemd-resolved
+    enabled: no
+    state: stopped
+
+- name: Add new resolv.conf
+  copy:
+    src: resolv.conf
+    dest: /etc/resolv.conf
+    mode: '0644'
+
+- name: Start Pi-hole via Docker Compose
+  community.docker.docker_compose_v2:
+    project_src: /opt/pihole
+    files:
+      - docker-compose.yml
+
+- name: Check if tls.pem exists and its size
+  stat:
+    path: /opt/pihole/etc-pihole/tls.pem
+  register: tls_stat
+
+- name: Check hostname matches entry in ansible/hosts
+  fail:
+    msg: "Warning: TLS not setup correctly, Webserver will fail"
+  when: not tls_stat.stat.exists or tls_stat.stat.size == 0
+  ignore_errors: True
+
